@@ -11,14 +11,14 @@
 //===== Additional Comments: ================================= 
 //= 1.0 First version.
 //============================================================ 
-//===== Translated by ========================================
-//= jetkappu =================================================
+//=================== Translated by ==========================
+//===================== jetkappu =============================
 
 ra_fild12,295,208,0	script	toairplane#rachel	45,1,1,{
 	end;
 OnTouch:
-	mes "Untuk menggunakan kapal udara, Anda diminta untuk membayar 1.200 zeny atau tiket gratis kapal udara.";
-	mes "Apakah Anda ingin menggunakan layanan ini?";
+	mes "Untuk menggunakan kapal udara, kamu diminta untuk membayar 1.200 zeny atau tiket gratis kapal udara.";
+	mes "Apakah kamu ingin menggunakan layanan ini?";
 	next;
 	if (select("Yes:No") == 1) {
 		if (countitem(7311) > 0) {
@@ -31,8 +31,8 @@ OnTouch:
 			warp "airplane_01",245,60;
 			end;
 		}
-		mes "Saya minta maaf, tetapi Anda tidak punya cukup uang.";
-		mes "Harap diingat, Anda diharuskan untuk membayar 1.200 zeny untuk menggunakan layanan ini.";
+		mes "Saya minta maaf, tetapi kamu tidak punya cukup uang.";
+		mes "Harap diingat, kamu diharuskan untuk membayar 1.200 zeny untuk menggunakan layanan ini.";
 		close;
 	}
 	mes "Terima kasih, silakan datang lagi.";
