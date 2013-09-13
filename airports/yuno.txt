@@ -56,12 +56,12 @@ y_airport,143,49,3	script	Arrival Staff#y_air2a::y_airport2	90,{
 	mes "[Airport Staff]";
 	mes "Selamat datang di bandara Juno. Jika Kamu baru saja tiba dari";
 	mes "penerbangan, biarkan saya memandu kamu ke terminal utama.. Jika tidak, silahkan";
-	mes "naik ke kapal udara yang hendak berangkat untuk mencapai tujuan yang kamu inginkan..";
+	mes "naik ke pesawat yang hendak berangkat untuk mencapai tujuan yang kamu inginkan..";
 	next;
 	if (select("Exit to main terminal:Cancel") == 1) {
 		mes "[Airport Staff]";
 		mes "Ketika kamu berada di terminal utama, kamu akan dikenakan tambahan biaya lagi";
-		mes "untuk naik kapal udara. Kamu sebaiknya keluar jika";
+		mes "untuk naik pesawat. Kamu sebaiknya keluar jika";
 		mes "tujuanya adalah Juno. Lanjutkan";
 		mes "untuk keluar ke terminal utama?";
 		next;

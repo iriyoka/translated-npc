@@ -59,12 +59,12 @@ lhz_airport,143,49,3	script	Arrival Staff#lhz_air2a::lhz_airport2	90,{
 	mes "Selamat datang di bandara Lighthalzen.";
 	mes "Izinkan saya untuk memandu kamu ke";
 	mes "terminal utama jika kamu tiba dari penerbangan. Jika tidak";
-	mes "silahkan naik ke kapal udara yang hendak berangkat untuk mencapai tujuan yang kamu inginkan..";
+	mes "silahkan naik ke pesawat yang hendak berangkat untuk mencapai tujuan yang kamu inginkan..";
 	next;
 	if (select("Exit to main terminal.:Cancel.") == 1) {
 		mes "[Arrival Staff]";
 		mes "Setelah kamu berada di terminal utama, kamu akan dikenakan tambahan biaya lagi";
-		mes "untuk naik kapal udara. kamu sebaiknya";
+		mes "untuk naik pesawat. kamu sebaiknya";
 		mes "keluar jika Lighthalzen adalah tujuan yang kamu maksudkan. Bagaimana kalau kita";
 		mes "lanjutkan untuk terminal utama?";
 		next;

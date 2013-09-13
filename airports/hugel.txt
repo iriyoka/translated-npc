@@ -17,7 +17,7 @@
 hugel,178,142,0	script	toairplane#hugel	45,1,1,{
 	end;
 OnTouch:
-	mes "Untuk menggunakan kapal udara, kamu diharuskan membayar 1.200 zeny atau menukarkan tiket gratis.";
+	mes "Untuk menggunakan pesawat, kamu diharuskan membayar 1.200 zeny atau menukarkan tiket gratis.";
 	mes "Apakah kamu ingin menggunakan layanan ini?";
 	next;
 	if (select("Yes:No") == 1) {
