@@ -22,7 +22,7 @@
 	next;
 	if (select("Board the Airship to Juno/Rachel.:Cancel.") == 1) {
 		mes "[Airship Staff]";
-		mes "Tarif untuk menaiki kapal udara ini adalah";
+		mes "Biaya untuk menaiki kapal udara ini adalah";
 		mes "1,200 zeny. Namun,";
 		mes "biaya ini dibebaskan jika kamu menggunakan";
 		mes "Tiket gratis untuk kapal udara. Sekarang,";

@@ -17,7 +17,7 @@
 ra_fild12,295,208,0	script	toairplane#rachel	45,1,1,{
 	end;
 OnTouch:
-	mes "Untuk menggunakan kapal udara, kamu diminta untuk membayar 1.200 zeny atau tiket gratis kapal udara.";
+	mes "Untuk menggunakan kapal udara, kamu diharuskan membayar 1.200 zeny atau tiket gratis kapal udara.";
 	mes "Apakah kamu ingin menggunakan layanan ini?";
 	next;
 	if (select("Yes:No") == 1) {
@@ -32,9 +32,9 @@ OnTouch:
 			end;
 		}
 		mes "Saya minta maaf, tetapi kamu tidak punya cukup uang.";
-		mes "Harap diingat, kamu diharuskan untuk membayar 1.200 zeny untuk menggunakan layanan ini.";
+		mes "Harap diingat, kamu diharuskan membayar 1.200 zeny untuk menggunakan layanan ini.";
 		close;
 	}
-	mes "Terima kasih, silakan datang lagi.";
+	mes "Terima kasih, silhakan datang lagi.";
 	close;
 }
