@@ -4453,7 +4453,7 @@ veins,115,59,5	script	Saraman	847,{
 		mes "Sadly, Silk Sand Camels";
 		mes "are almost extinct, so I only";
 		mes "have one on this farm. That's";
-		mes "why we have a special contract^FFFFFF ^000000 with Ms. Ivory to make her soap.";
+		mes "why we have a special contract with Ms. Ivory to make her soap.";
 		next;
 		mes "[Camel Farm Owner Saraman]";
 		mes "Say... I wasn't expecting";
@@ -4775,7 +4775,7 @@ veins,78,226,5	script	Camel#camelcc1::VeinsCamel	938,{
 veins,72,227,3	duplicate(VeinsCamel)	Camel#camelcc3	938
 veins,81,222,1	duplicate(VeinsCamel)	Camel#camelcc4	938
 veins,77,219,5	duplicate(VeinsCamel)	Camel#camelcc5	938
-veins,73,215,8	duplicate(VeinsCamel)	Camel#camelcc6	938
+veins,73,215,0	duplicate(VeinsCamel)	Camel#camelcc6	938
 veins,68,215,5	duplicate(VeinsCamel)	Camel#camelcc7	938
 
 ve_fild07,235,42,3	script	Silk Sand Camel	938,{

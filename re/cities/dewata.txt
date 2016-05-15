@@ -3,7 +3,7 @@
 //===== By: ================================================== 
 //= Gennosuke Kouga, Muad_Dib
 //===== Current Version: ===================================== 
-//= 1.3
+//= 1.4
 //===== Compatible With: ===================================== 
 //= rAthena SVN
 //===== Description: ========================================= 
@@ -14,24 +14,31 @@
 //= 1.1 Standardized. [Euphy]
 //= 1.2 Fixed Zeny check. [Joseph]
 //= 1.3 Updated to match the official script. [Lemongrass/Euphy]
+//= 1.4 Added VIP features. [Euphy]
 //============================================================
 
-// Dewata Transportation
+// Dewata Transportation :: dewata_trans
 //============================================================
 alberta,212,202,4	script	Dewata Sailor#alberta	536,{
 	mes "[Dewata Sailor]";
 	mes "Do you want to visit ^8B4513Dewata Island^000000?";
-	mes "With it's dazzling waves and charming views it's a great place to relax.";
-	mes "The transit fee is 10,000 Zeny.";
+	mes "With its dazzling waves and charming vistas it's a great place to relax.";
+	if (VIP_SCRIPT) {
+		set .@cost, vip_status(1)?1000:10000;
+		mes "The transit fee is 10,000 Zeny and 1,000 for VIP.";
+	} else {
+		set .@cost,10000;
+		mes "The transit fee is 10,000 Zeny.";
+	}
 	next;
 	switch(select("Yes!:No.")) {
 	case 1:
-		if (Zeny >= 10000) {
+		if (Zeny >= .@cost) {
 			mes "[Dewata Sailor]";
 			mes "^8B4513Dewata^000000 is a beautiful and peaceful island country.";
 			mes "Have a nice trip~";
 			close2;
-			set Zeny, Zeny - 10000;
+			set Zeny, Zeny - .@cost;
 			warp "dewata",232,53;
 			end;
 		} else {
@@ -69,7 +76,7 @@ dewata,229,49,6	script	Alberta Sailor#dewata	536,{
 	}
 }
 
-// Generic Dewata NPCs
+// Generic Dewata NPCs :: dewata_npc
 //============================================================ 
 dewata,221,237,5	script	Young Man#dew-1	536,{
 	mes "[Fruit Fancier]";
@@ -420,7 +427,7 @@ dewata,99,203,4	script	Tourist#dew4	755,{
 	close;
 }
 
-dewata,67,186,8	script	Monk#dew1	834,{
+dewata,67,186,0	script	Monk#dew1	834,{
 	mes "[Monk]";
 	mes "I am a monk, content to spend my days in religious study.";
 	next;
@@ -432,7 +439,7 @@ dewata,67,186,8	script	Monk#dew1	834,{
 	close;
 }
 
-dewata,65,188,8	script	Monk#dew2	834,{
+dewata,65,188,0	script	Monk#dew2	834,{
 	mes "[Monk]";
 	mes "Borobudur temple is one of few temples left for worshiping the Great Buddha.";
 	next;
@@ -441,7 +448,7 @@ dewata,65,188,8	script	Monk#dew2	834,{
 	close;
 }
 
-dewata,63,190,8	script	Monk#dew3	834,{
+dewata,63,190,0	script	Monk#dew3	834,{
 	mes "[Monk]";
 	mes "Are you a Tourist? You can make an offering and a wish to one of the shrines.";
 	next;
@@ -450,7 +457,7 @@ dewata,63,190,8	script	Monk#dew3	834,{
 	close;
 }
 
-dewata,62,192,8	script	Monk#dew4	834,{
+dewata,62,192,0	script	Monk#dew4	834,{
 	mes "[Monk]";
 	mes "Our great Buddha is the king of souls and the leader of all good Gods.";
 	next;
@@ -659,7 +666,7 @@ OnTouch:
 	close;
 }
 
-dewata,233,263,8	script	Sweet Married Couple#1	828,2,3,{
+dewata,233,263,0	script	Sweet Married Couple#1	828,2,3,{
 OnTouch:
 	mes "[Sweet Husband]";
 	mes "You are the most beautiful thing in the world baby~";
@@ -679,7 +686,7 @@ OnTouch:
 	close;
 }
 
-dewata,234,263,8	script	Sweet Married Couple#2	727,2,3,{
+dewata,234,263,0	script	Sweet Married Couple#2	727,2,3,{
 OnTouch:
 	mes "[Sweet Wife]";
 	mes "Baby~ You know what flower that is~?";

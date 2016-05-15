@@ -35,7 +35,7 @@ geffen_in,164,124,4	script	Mage Guildsman	123,{
 				mes "[Mage Guildsman]";
 				mes "Ah, you must have been reborn. Well, I'm glad to have you back.";
 				next;
-				if (getskilllv("NV_BASIC") < 9) {
+				if (!callfunc("F_CanChangeJob")) {
 					mes "[Mage Guildsman]";
 					mes "I'm sorry, but I don't think you're ready to learn magic yet. Why don't you go finish learning the Basic Skills first?";
 					next;
@@ -46,9 +46,9 @@ geffen_in,164,124,4	script	Mage Guildsman	123,{
 				mes "[Mage Guildsman]";
 				mes "Well, since you have passed the Mage test once, I will not question your qualification. You want to have your magic skills back immediately, don't you?";
 				next;
-				skill 143,0,0;
+				skill "NV_TRICKDEAD",0,0;
 				jobchange Job_Mage_High;
-				skill 157,1,0;
+				skill "MG_ENERGYCOAT",1,0;
 				mes "[Mage Guildsman]";
 				mes "Wow, for some reason, you look way better than you did before. Anyway, I believe you will do a better job being a Mage as well.";
 				close;
@@ -139,7 +139,7 @@ geffen_in,164,124,4	script	Mage Guildsman	123,{
 			close;
 		}
 		mes "Yeah? Ready...?";
-		if (getskilllv("NV_BASIC") < 9) {
+		if (!callfunc("F_CanChangeJob")) {
 			mes "Oh, what a bummer. You haven't met the requirements yet.";
 			next;
 			mes "[Mage Guildsman]";

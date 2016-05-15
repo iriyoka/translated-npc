@@ -263,7 +263,7 @@ prt_monk,261,91,3	script	Rust Blackhand#edq	826,{
 		mes "[Rust Blackhand]";
 		mes "Did you bring all of the ingredients?";
 		next;
-		if ((countitem(6004) > 0) && (countitem(2256) > 0) && (countitem(7799) > 29) && (countitem(7798) > 49) && (Zeny > 990000)) {
+		if ((countitem(6004) > 0) && (countitem(2256) > 0) && (countitem(7799) > 29) && (countitem(7798) > 49) && (Zeny >= 990000)) {
 			mes "[Rust Blackhand]";
 			mes "kkk... You prepared the ingredients well. Why don't you leave it there and wait?";
 			next;
@@ -339,7 +339,8 @@ prt_monk,261,91,3	script	Rust Blackhand#edq	826,{
 				next;
 				mes "[Rust Blackhand]";
 				mes "You'll never know how great this hat is until you get one. If you understood, go and get the ingredients.";
-				changequest 3042,3043;
+				if (isbegin_quest(3042) == 1)
+					changequest 3042,3043;
 				close;
 			case 2:
 				mes "[Rust Blackhand]";
@@ -394,8 +395,8 @@ prt_monk,261,91,3	script	Rust Blackhand#edq	826,{
 				next;
 				mes "[Rust Blackhand]";
 				mes "You'll never know how great this hat is until you get one. If you understood, go and get the ingredients.";
-				//recall_completequest 3043
-				changequest 3042,3043;
+				if (isbegin_quest(3042) == 1)
+					changequest 3042,3043;
 				close;
 			case 2:
 				mes "[Rust Blackhand]";
@@ -424,8 +425,8 @@ prt_monk,261,91,3	script	Rust Blackhand#edq	826,{
 OnInstanceInit:
 	// Pick one "true" Gravestone and 12 "false" Gravestones.
 	set .@true, rand(1,13);
-	for(set .@i,1; .@i<13; set .@i,.@i+1) {
-		disablenpc instance_npcname("Gravestone#1F_1"+((.@i == .@true)?"F":"T"));
+	for(set .@i,1; .@i<=13; set .@i,.@i+1) {
+		disablenpc instance_npcname("Gravestone#1F_"+.@i+((.@i == .@true)?"F":"T"));
 	}
 	disablenpc instance_npcname("ins_baphomet_lotto");
 	end;
@@ -433,7 +434,7 @@ OnInstanceInit:
 
 1@cata,3,2,0	script	ins_baphomet_lotto2	-1,{
 OnEnable:
-	for(set .@i,1; .@i<12; set .@i,.@i+1)
+	for(set .@i,1; .@i<13; set .@i,.@i+1)
 		enablenpc instance_npcname("Bobbing Torch#"+.@i);
 	end;
 }

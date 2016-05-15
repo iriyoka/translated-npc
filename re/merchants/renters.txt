@@ -3,7 +3,7 @@
 //===== By: ================================================== 
 //= rAthena Dev Team
 //===== Current Version: ===================================== 
-//= 2.1
+//= 2.2
 //===== Compatible With: ===================================== 
 //= rAthena SVN
 //===== Description: ========================================= 
@@ -14,7 +14,7 @@
 //= 2.2 Updated to match the official scripts. [Euphy]
 //============================================================ 
 
-// Dragon Breeder
+// Dragon Breeder :: dragon
 //============================================================
 job3_rune01,88,62,5	script	Dragon Breeder	105,{
 	mes "[Dragon Breeder]";
@@ -29,12 +29,12 @@ job3_rune01,88,62,5	script	Dragon Breeder	105,{
 				mes "Please learn how to ride a Dragon first.";
 				close;
 			}
-			else if (checkriding()) {
+			else if (checkdragon()) {
 				mes "[Dragon Breeder]";
 				mes "You already have a Dragon.";
 				close;
 			}
-			else if(ismounting()) {
+			else if (ismounting()) {
 				mes "[Dragon Breeder]";
 				mes "Please remove your cash mount.";
 				close;
@@ -52,7 +52,7 @@ job3_rune01,88,62,5	script	Dragon Breeder	105,{
 	close;
 }
 
-// Dragon/Gryphon Master
+// Dragon/Gryphon Master :: dragon
 //============================================================
 prontera,130,213,5	script	Riding Creature Master	105,{
 	mes "[Riding Creature Master]";
@@ -67,12 +67,12 @@ prontera,130,213,5	script	Riding Creature Master	105,{
 				mes "Please learn how to ride a Dragon first.";
 				close;
 			}
-			else if (checkriding()) {
+			else if (checkdragon()) {
 				mes "[Riding Creature Master]";
 				mes "You already have a Dragon.";
 				close;
 			}
-			else if(ismounting()) {
+			else if (ismounting()) {
 				mes "[Riding Creature Master]";
 				mes "Please remove your cash mount.";
 				close;
@@ -90,7 +90,7 @@ prontera,130,213,5	script	Riding Creature Master	105,{
 		next;
 		switch(select("Yes:No")) {
 		case 1:
-			if(!getskilllv("KN_RIDING")) {
+			if (!getskilllv("KN_RIDING")) {
 				mes "[Riding Creature Master]";
 				mes "Please learn how to ride a Gryphon first.";
 				close;
@@ -100,7 +100,7 @@ prontera,130,213,5	script	Riding Creature Master	105,{
 				mes "You already have a Gryphon.";
 				close;
 			}
-			else if(ismounting()) {
+			else if (ismounting()) {
 				mes "[Riding Creature Master]";
 				mes "Please remove your cash mount.";
 				close;
@@ -116,8 +116,13 @@ prontera,130,213,5	script	Riding Creature Master	105,{
 	mes "I'm here to provide Rune Knights and Royal Guards with riding creatures.";
 	close;
 }
+geffen,100,55,3	duplicate(Riding Creature Master)	Riding Creature Master#2	105
+payon,166,102,5	duplicate(Riding Creature Master)	Riding Creature Master#3	105
+aldebaran,133,109,5	duplicate(Riding Creature Master)	Riding Creature Master#4	105
+yuno,171,187,3	duplicate(Riding Creature Master)	Riding Creature Master#5	105
+rachel,106,130,5	duplicate(Riding Creature Master)	Riding Creature Master#6	105
 
-// Peco removing NPC
+// Peco removing NPC :: dragon
 //============================================================
 prontera,125,208,5	script	Peco Peco Remover	105,{
 	mes "[Soldier]";
@@ -148,7 +153,7 @@ prontera,125,208,5	script	Peco Peco Remover	105,{
 	close;
 }
 
-// Magic Gear Renter
+// Magic Gear Renter :: madogear
 //============================================================
 -	script	::mgm	-1,{
 	mes "[Magic Gear Master]";

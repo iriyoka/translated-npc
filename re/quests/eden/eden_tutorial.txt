@@ -13,6 +13,8 @@
 //= 1.0 First Version. [Euphy]
 //============================================================
 
+// Main Quest :: TutorialVer2
+//============================================================
 moc_para01,34,178,3	script	Tutorial Instructor	904,{
 	if (Class == Job_Novice) {
 		// Fall through
@@ -199,7 +201,7 @@ moc_para01,34,178,3	script	Tutorial Instructor	904,{
 				mes "The ^006400Universal Silver Catalog^000000";
 				mes "can be obtained from";
 				mes "the ^0000FFCatalogue Wizard^000000";
-				mes "that is located in South Prontera.";
+				mes "that is located in the Eden Group Headquarter.";
 				next;
 				mes "[Tutorial Instructor]";
 				mes "Now, go and obtain";
@@ -250,7 +252,7 @@ moc_para01,34,178,3	script	Tutorial Instructor	904,{
 			mes "You can get the";
 			mes "^006400Universal Silver Catalog^000000";
 			mes "from the ^0000FFCatalogue Wizard^000000";
-			mes "who is located in Prontera.";
+			mes "who is located in the Eden Group Headquarter.";
 			next;
 			mes "[Tutorial Instructor]";
 			mes "So, go and get the";
@@ -513,7 +515,7 @@ moc_para01,34,178,3	script	Tutorial Instructor	904,{
 			mes "The ^006400Universal Silver Catalog^000000";
 			mes "can be obtained from ";
 			mes "the ^0000FFCatalogue Wizard^000000";
-			mes "that is located in South Prontera;";
+			mes "that is located in the Eden Group Headquarter.";
 			next;
 			mes "[Tutorial Instructor]";
 			mes "It only costs 200 zeny for one";
@@ -663,7 +665,7 @@ moc_para01,32,179,4	script	Tutorial Goal	895,{
 	close;
 }
 
-moc_para01,24,175,4	script	Siege Master	734,{
+moc_para01,26,174,4	script	Siege Master	734,{
 	set .@checkquest, checkquest(4161);
 	if (.@checkquest == 2) {
 		mes "[Siege Expert]";
@@ -1198,7 +1200,7 @@ L_Info:
 	return;
 }
 
-moc_para01,28,167,3	script	Memorial Dungeon Expert	868,{
+moc_para01,28,167,3	script	Memorial Dungeon Expert	916,{
 	set .@checkquest, checkquest(4164);
 	if (.@checkquest == 2) {
 		mes "[Memorial Dungeon Expert]";

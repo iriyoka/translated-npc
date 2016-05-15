@@ -5,7 +5,7 @@
 //= Darlskies, Darkchild, Syrus22, Lupus, kobra_k88 (2.0)
 //= L0ne_W0lf
 //===== Current Version: ===================================== 
-//= 6.7
+//= 6.8
 //===== Compatible With: ===================================== 
 //= rAthena SVN
 //===== Description: =========================================
@@ -62,6 +62,7 @@
 //= 6.5 Optimized. [Joseph]
 //= 6.6 Added Warp Points / View Points Function. [Joseph]
 //= 6.7 Added Rune Knight Kafra. [Euphy]
+//= 6.8 Updated some functions and added VIP features. [Euphy]
 //============================================================ 
 
 //=== Main Function ========================================================
@@ -214,19 +215,28 @@ function	script	F_KafStor	{
 		close;
 	}
 	// Unable to access Normal Storage (Insufficient Basic Skills)
-	if(basicskillcheck() && getskilllv("NV_BASIC") < 6){
+	if(!callfunc("F_CanOpenStorage")){
 		mes "[Kafra Employee]";
 		// Niflheim Specific Message
 		if (getarg(2) == 1) {
 			mes "^666666S-s-ssoooorry,";
-			mes "y-you're a-a-aaaa";
-			mes "Nooviiice... N-neeeds";
-			mes "B-basic sssskill l-level 6...^000000";
+			if(Class == Job_Summoner) {
+				mes "y-you n-neeed";
+				mes "N-new b-basic sssskill...^000000";
+			} else {
+				mes "y-you're a-a-aaaa";
+				mes "Nooviiice... N-neeeds";
+				mes "B-basic sssskill l-level 6...^000000";
+			}
 			return;
 		}
 		mes "I'm sorry, but you";
-		mes "need the Novice's";
-		mes "Basic Skill Level 6 to";
+		if(Class == Job_Summoner)
+			mes "need the New Basic Skill to";
+		else {
+			mes "need the Novice's";
+			mes "Basic Skill Level 6 to";
+		}
 		mes "use the Storage Service.";
 		return;
 	}
@@ -292,7 +302,7 @@ function	script	F_KafTele	{
 	mes "your destination.";
 	next;
 	set .@menu$, "";
-	for (set .@i, 0; .@i <= 6; set .@i, .@i + 1)
+	for (set .@i, 0; .@i <= getarraysize(@wrpD$); set .@i, .@i + 1)
 		set .@menu$, .@menu$ + @wrpC$[.@i] + ":";
 	set .@j, select (.@menu$) - 1;
 	if (@wrpC$[.@j] == "Cancel") return;
@@ -340,9 +350,13 @@ function	script	F_KafCart	{
 		mes "[Kafra Employee]";
 		mes "I'm sorry, but the";
 		mes "Pushcart rental service";
-		mes "is only available to Merchants,";
-		mes "Blacksmiths, Master Smiths,";
-		mes "Alchemists and Biochemists.";
+		if (checkre(0))
+			mes "is only available to Merchant classes.";
+		else {
+			mes "is only available to Merchants,";
+			mes "Blacksmiths, Master Smiths,";
+			mes "Alchemists and Biochemists.";
+		}
 		return 1;
 	}
 	// Make sure the invoking character does not have a cart already
@@ -353,6 +367,12 @@ function	script	F_KafCart	{
 		mes "Unfortunately, we can't";
 		mes "rent more than one to";
 		mes "each customer at a time.";
+		return 1;
+	}
+	// Check if the player has the Pushcart skill
+	else if(getskilllv("MC_PUSHCART") == 0) {
+		mes "[Kafra Employee]";
+		mes "You can only rent a cart after learning the \"Push Cart\" skill.";
 		return 1;
 	}
 	// Consume "Free Ticket for the Cart Service" if available.
@@ -567,7 +587,7 @@ function	script	F_EntKafCode	{
 	set @kafcode_try,@kafcode_try+1;
 	if(@kafcode_try>10) {
 		set @kafcode_try,0;
-		logmes "Hack: Tried to fit storage password.";
+		logmes "Tried to fit storage password.";
 	}
 	if(input(@code_) == 1) {
 		mes "You can't use such big password.";
@@ -591,7 +611,7 @@ function	script	F_KafSet	{
 	cleararray @viewpY[0],"",getarraysize(@viewpY);
 	if (strnpcinfo(4) == "prontera") {
 		setarray @wrpD$[0], "Izlude", "Geffen", "Payon", "Morroc", "Orc Dungeon", "Alberta";
-		setarray @wrpP[0], 600, 1200, 1200, 1200, 1200, 1800;
+		setarray @wrpP[0], 600, 1200, 1200, 1200, 1700, 1800;
 		setarray @viewpX[0], 151, 29, 282, 152;
 		setarray @viewpY[0], 29, 207, 200, 326;
 	} else if (strnpcinfo(4) == "alberta") {
@@ -610,7 +630,7 @@ function	script	F_KafSet	{
 		setarray @wrpP[0], 1200, 1200;
 	} else if (strnpcinfo(4) == "geffen") {
 		setarray @wrpD$[0], "Prontera", "Al De Baran", "Orc Dungeon", "Mjolnir Dead Pit";
-		setarray @wrpP[0], 1200, 1200, 1200, 1700;
+		setarray @wrpP[0], 1200, 1200, 1700, 1700;
 		setarray @viewpX[0], 120, 203;
 		setarray @viewpY[0], 62, 123;
 	} else if (strnpcinfo(4) == "izlude") {
@@ -636,8 +656,15 @@ function	script	F_KafSet	{
 		setarray @wrpD$[0], "Izlude", "Geffen", "Payon", "Morroc", "Alberta";
 		setarray @wrpP[0], 600, 1200, 1200, 1200, 1800;
 	}
+
+	// VIP pricing varies across the regional servers; this is most practical.
+	if (VIP_SCRIPT && !vip_status(1)) {
+		for (set .@i, 0; .@i < getarraysize(@wrpD$); set .@i, .@i + 1)
+			setd "@wrpP["+.@i+"]",getd("@wrpP["+.@i+"]") * 2;
+	}
+
 	for (set .@i, 0; .@i < getarraysize(@wrpD$); set .@i, .@i + 1)
-		setd "@wrpC$["+.@i+"]",getd("@wrpD$["+.@i+"]")+" -> "+getd("@wrpP["+.@i+"]");
+		setd "@wrpC$["+.@i+"]",getd("@wrpD$["+.@i+"]")+" -> "+getd("@wrpP["+.@i+"]")+" z";
 	setd "@wrpC$["+getarraysize(@wrpC$)+"]","Cancel";
 	return;
 }

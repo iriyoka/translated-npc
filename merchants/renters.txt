@@ -26,7 +26,8 @@
 //= 2.2 Added warg checks. [Euphy]
 //============================================================ 
 
-// PecoPeco Breeder (for Knights)-------------------------------------------
+// PecoPeco Breeder (for Knights) :: breeder
+//============================================================
 prontera,55,350,5	script	Peco Peco Breeder#knt	105,{
 	if(Upper==0) set .@price,2500; //Normal Peco - default price
 	if(Upper==1) set .@price,2500; //Armored Peco
@@ -89,7 +90,8 @@ prontera,55,350,5	script	Peco Peco Breeder#knt	105,{
 	}
 }
 
-// Grand PecoPeco Breeder (for Crusaders)-------------------------------------------
+// Grand PecoPeco Breeder (for Crusaders)
+//============================================================
 prontera,232,318,3	script	Peco Peco Breeder#cru	105,{
 	if(Upper==0) set .@price,3500; //Normal Peco - default price
 	if(Upper==1) set .@price,3500; //Armored Peco
@@ -151,7 +153,8 @@ prontera,232,318,3	script	Peco Peco Breeder#cru	105,{
 	}
 }
 
-// Falcon Master--------------------------------------------------------------
+// Falcon Master :: breeder
+//============================================================
 hu_in01,381,304,5	script	Falcon Breeder#hnt	105,{
 	if(Upper==0) set .@price,2500; //Normal Falcon - default price
 	if(Upper==1) set .@price,2500; //Scarf Falcon
@@ -159,7 +162,7 @@ hu_in01,381,304,5	script	Falcon Breeder#hnt	105,{
 
 	mes "[Falcon Breeder]";
 	if (BaseJob == Job_Hunter) {
-		if (checkoption(Option_Wug) || checkoption(Option_Wugrider)) {
+		if (checkwug()) {
 			mes "Um...";
 			mes "You can't rent a Falcon";
 			mes "until you dismiss your warg first!";
@@ -172,7 +175,7 @@ hu_in01,381,304,5	script	Falcon Breeder#hnt	105,{
 		next;
 		switch(select("Rent Falcon:Cancel")) {
 		case 1:
-			if (checkoption(Option_Wug) || checkoption(Option_Wugrider)) {
+			if (checkwug()) {
 				mes "[Falcon Breeder]";
 				mes "Um...";
 				mes "You can't rent a Falcon";

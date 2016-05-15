@@ -19,7 +19,7 @@ moc_prydb1,39,129,2	script	Thief Guide#thief	69,{
 				mes "[Thief Guide]";
 				mes "Huh? Do I know you? It's creepy that you seem so familiar. You don't have a twin, do you?";
 				next;
-				if (getskilllv("NV_BASIC") < 9) {
+				if (!callfunc("F_CanChangeJob")) {
 					mes "[Thief Guide]";
 					mes "What, do you want to be a Thief? I'm sorry, but you look like you need more training.";
 					next;
@@ -30,12 +30,12 @@ moc_prydb1,39,129,2	script	Thief Guide#thief	69,{
 				mes "[Thief Guide]";
 				mes "Well, I got this feeling like you've been through a lifetime of fighting, so I'm promoting you to a Thief right this minute. I better give you tough guys what you want...";
 				next;
-				skill 143,0,0;
+				skill "NV_TRICKDEAD",0,0;
 				jobchange Job_Thief_High;
-				skill 149,1,0;
-				skill 150,1,0;
-				skill 151,1,0;
-				skill 152,1,0;
+				skill "TF_SPRINKLESAND",1,0;
+				skill "TF_BACKSLIDING",1,0;
+				skill "TF_PICKSTONE",1,0;
+				skill "TF_THROWSTONE",1,0;
 				mes "[Thief Guide]";
 				mes "Since you've become a Thief, live as a Thief. Now, go for it! Next~";
 				close;
@@ -136,7 +136,7 @@ moc_prydb1,39,129,2	script	Thief Guide#thief	69,{
 	mes "Alright, tell me your name. Huh? What?";
 	mes ""+strcharinfo(0)+". So "+strcharinfo(0)+", right...?";
 	next;
-	if (getskilllv("NV_BASIC") < 9) {
+	if (!callfunc("F_CanChangeJob")) {
 		mes "[Thief Guildsman]";
 		mes "I can see your strong will to become a Thief......";
 		mes "But only with your will, you cannot make it in a real fight, can you?";

@@ -5,7 +5,7 @@
 //===== Current Version: =====================================
 //= 1.1
 //===== Compatible With: =====================================
-//= Any rAthena SVN
+//= rAthena SVN
 //===== Description: =========================================
 //= Paradise Group storage access.
 //===== Additional Comments: =================================
@@ -13,6 +13,8 @@
 //= 1.1 Replaced 2nd NPC with duplicate function. [Masao]
 //============================================================
 
+// Goods Cabinets :: pare_service
+//============================================================
 -	script	Goods Cabinet#00::pggc	-1,{
 	mes "It is a Goods Storage Cabinet.";
 	mes "A message is written on a piece of paper.";
@@ -38,7 +40,7 @@
 		switch(select("Use the Cabinet.:Cancel.")) {
 			case 1:
 				if (Zeny > 499) {
-					if (getskilllv("NV_BASIC") < 6) {
+					if (!callfunc("F_CanOpenStorage")) {
 						mes "The cabinet is not working for me.";
 						mes "Maybe I am not yet qualified to use Cabinet.";
 						close;
